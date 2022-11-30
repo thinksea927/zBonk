@@ -51,7 +51,8 @@ const Home: NextPage = () => {
     }
   };
   // console.log("flag", flag);
-  const [rotate, setRotate] = useState(0);
+  // const [rotate, setRotate] = useState(0);
+  const [czRotate, setCzRotate] = useState("cz");
 
   // if (mouseDownE) {
   //   setRotate(5.81);
@@ -76,6 +77,7 @@ const Home: NextPage = () => {
   function mouseDown() {
     setMouseDownE(true);
     console.log("setMouseDownE", mouseDownE);
+    setCzRotate("czRotate");
 
     musicPlayers.current?.play();
     // if (czActive.current) {
@@ -98,6 +100,7 @@ const Home: NextPage = () => {
   function mouseUp() {
     setMouseUpE(true);
     console.log("setMouseUpE", mouseUpE);
+    setCzRotate("cz");
     // if (czActive.current) {
     //   czActive.current.style.transform =
     //     "translateX(0) translateZ(0) rotateZ(0)";
@@ -218,12 +221,13 @@ const Home: NextPage = () => {
             <Image
               src={Cz.src}
               alt="CZ"
-              className={classNames(
-                { [styles["cz"]]: mouseUpE },
-                {
-                  [styles["czRotate"]]: mouseDownE,
-                }
-              )}
+              // className={classNames(
+              //   { [styles["cz"]]: mouseUpE },
+              //   {
+              //     [styles["czRotate"]]: mouseDownE,
+              //   }
+              // )}
+              className={styles[`${czRotate}`]}
               ref={czActive}
               // transition="all 1s ease-in-out"
               // transitionDelay="0.05s"

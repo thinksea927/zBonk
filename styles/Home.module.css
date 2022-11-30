@@ -195,6 +195,13 @@
   z-index: 3;
 }
 
-.cz.czRotate {
+.czRotate {
+  position: absolute;
+  width: 299px;
+  height: 298px;
+  /* left: calc(50% - 299px / 2 - 169.5px);
+  top: calc(50% - 298px / 2 - 47px + 94px); */
+  z-index: 3;
+  border: 1px solid blue;
   transform: rotateZ(5deg);
 }
