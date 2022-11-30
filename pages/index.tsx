@@ -51,7 +51,9 @@ const Home: NextPage = () => {
   }, [status === "freeminting..."]);
 
   // Desktop - click func
+  const [mouseDownE, setMouseDownE] = useState();
   function mouseDown() {
+    setMouseDownE(true);
     musicPlayers.current?.play();
     if (czActive.current) {
       czActive.current.style.transform =
@@ -198,7 +200,7 @@ const Home: NextPage = () => {
               // transition="all 1s ease-in-out"
               transitionDelay="0.05s"
               // transform="rotateZ(0.001deg)"
-              transform={isMobile ? "rotateZ(50deg)" : "rotateZ(5deg)"}
+              transform={mouseDownE ? "rotateZ(50deg)" : "rotateZ(5deg)"}
             />
           </Box>
           <Image
