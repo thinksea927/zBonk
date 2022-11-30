@@ -48,11 +48,25 @@ const Home: NextPage = () => {
     if (count < 10) {
       setCount(count + 1);
     }
-    setTimeout(() => {
-      setMouseUpE(true);
-      console.log(mouseUpE);
-    }, 10000);
   };
+  // console.log("flag", flag);
+  const handleRotate = () => {
+    if (mouseDownE) {
+      return "rotateZ(5.81deg)";
+    }
+    if (mouseUpE) {
+      return "rotateZ(0deg)";
+    }
+  };
+  const [rotate, setRotate] = useState(0);
+  useEffect(() => {
+    setRotate(5.81);
+    setTimeout(() => {
+      setRotate(0);
+    }, 100);
+  }, [mouseDownE]);
+
+  console.log(rotate);
 
   useEffect(() => {
     setPwd("ToBonkOrNotToBonk");
@@ -61,6 +75,8 @@ const Home: NextPage = () => {
   // Desktop - click func
   function mouseDown() {
     setMouseDownE(true);
+    console.log("setMouseDownE", mouseDownE);
+
     musicPlayers.current?.play();
     // if (czActive.current) {
     //   czActive.current.style.transform =
@@ -80,6 +96,8 @@ const Home: NextPage = () => {
   }
 
   function mouseUp() {
+    setMouseDownE(false);
+    console.log("setMouseUpE", mouseUpE);
     // if (czActive.current) {
     //   czActive.current.style.transform =
     //     "translateX(0) translateZ(0) rotateZ(0)";
@@ -205,7 +223,10 @@ const Home: NextPage = () => {
               // transition="all 1s ease-in-out"
               // transitionDelay="0.05s"
               // transform="rotateZ(0.001deg)"
-              transform={flag ? "rotateZ(5.81deg)" : "rotateZ(0deg)"}
+              transform={`rotateZ(${rotate}deg)`}
+              // ({ "rotateZ(5.81deg)": true }, { "rotateZ(5.81deg)": false })
+
+              // "rotateZ(0deg)"}
             />
           </Box>
           <Image
@@ -226,10 +247,10 @@ const Home: NextPage = () => {
                 fontSize="30px"
                 color="#07839E"
                 borderRadius="38.5px"
-                // onMouseDown={mouseDown}
-                // onMouseUp={mouseUp}
-                onMouseDown={setFlag.on}
-                onMouseUp={setFlag.off}
+                onMouseDown={mouseDown}
+                onMouseUp={mouseUp}
+                // onMouseDown={setFlag.on}
+                // onMouseUp={setFlag.off}
                 className={styles["bonkButton"]}
                 ref={BonkRef}
                 zIndex="10"
