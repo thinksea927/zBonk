@@ -8,7 +8,8 @@ import Nav from "../components/Nav";
 import classNames from "classnames";
 import { useRef, useEffect, useState } from "react";
 import useNFTMint from "../hooks/useNFTMint";
-import useMediaQuery from "../hooks/useMediaQuery";
+// import useMediaQuery from "../hooks/useMediaQuery";
+
 import {
   Container,
   Box,
@@ -16,6 +17,7 @@ import {
   Text,
   Button,
   Stack,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
@@ -25,27 +27,31 @@ const Home: NextPage = () => {
   const BatActive = useRef<HTMLImageElement>(null);
   const BonkRef = useRef<HTMLButtonElement>(null);
   const [count, setCount] = useState(0);
-  const isDesktop = useMediaQuery("(min-width: 1000px)");
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
   const musicPlayers = useRef<HTMLAudioElement | undefined>(
     typeof Audio !== "undefined" ? new Audio("/bonk.m4a") : undefined
   );
 
   // Mint
-  const [amount, setAmount] = useState(1);
-  const { freeMintAsync, isConnected } = useNFTMint(amount);
-  const [status, setStatus] = useState("打擊成功！");
+  const [pwd, setPwd] = useState("");
+  const { freeMintAsync, isConnected } = useNFTMint(pwd);
+  const [status, setStatus] = useState("done!");
   const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
-    musicPlayers.current?.play();
     if (count < 10) {
       setCount(count + 1);
     }
   };
 
+  useEffect(() => {
+    setPwd("ToBonkOrNotToBonk");
+  }, [status === "freeminting..."]);
+
   // Desktop - click func
   function mouseDown() {
+    musicPlayers.current?.play();
     if (czActive.current) {
       czActive.current.style.transform = "rotate(5.81deg)";
     }
@@ -80,17 +86,17 @@ const Home: NextPage = () => {
   }
 
   // mobile - click on screen
-  if (typeof window !== "undefined" && !isDesktop) {
-    document.body.addEventListener("mouseDown", mouseDown, true);
-    document.body.addEventListener("mouseUp", mouseUp, true);
+  if (typeof window !== "undefined" && isMobile) {
+    document.body.addEventListener("mousedown", mouseDown, true);
+    document.body.addEventListener("mouseup", mouseUp, true);
   }
 
   return (
     <>
       <Container
         maxW="2000px"
-        overflowX={isDesktop ? "scroll" : "hidden"}
-        overflowY="hidden"
+        overflow="hidden"
+        mt={isMobile ? "-48%" : 0}
         centerContent
       >
         <Box
@@ -102,7 +108,11 @@ const Home: NextPage = () => {
           pos="relative"
         >
           <Nav></Nav>
-          <Text className={styles["logo"]} data-stroke="CYBERBONK">
+          <Text
+            className={styles["logo"]}
+            data-stroke="CYBERBONK"
+            fontSize={isMobile ? "60px" : "90px"}
+          >
             CYBERBONK
           </Text>
           <Text className={styles["slogan"]}>
@@ -182,7 +192,7 @@ const Home: NextPage = () => {
           <Box className={styles["batWrapper"]} ref={BatActive} />
 
           {/* BONK BUTTON */}
-          {!isDesktop ||
+          {isMobile ||
             (count < 10 && (
               <Button
                 w="200px"
@@ -205,7 +215,7 @@ const Home: NextPage = () => {
             ))}
 
           {/* Mint Button */}
-          {!isDesktop ||
+          {isMobile ||
             (count >= 10 && (
               <Button
                 as="a"
@@ -233,7 +243,6 @@ const Home: NextPage = () => {
                       setLink(
                         `https://goerli.etherscan.io/tx/${freeMintTx?.hash}`
                       );
-                      setCount(0);
                       setIsLoading(false);
                     } catch (error) {
                       setStatus("Error, please try again");
@@ -247,7 +256,7 @@ const Home: NextPage = () => {
             ))}
 
           {/* Transaction Status */}
-          {!isDesktop ||
+          {isMobile ||
             (count >= 10 && (
               <Text
                 position="absolute"
@@ -280,7 +289,7 @@ const Home: NextPage = () => {
           )}
 
           {/* Mobile - instruction text */}
-          {isDesktop ? (
+          {!isMobile ? (
             count < 10 && (
               <Text
                 position="absolute"
@@ -297,7 +306,7 @@ const Home: NextPage = () => {
             <Stack
               position="absolute"
               fontSize="20px"
-              bottom="20px"
+              bottom={isMobile ? "120px" : "20px"}
               left="50%"
               transform="translateX(-50%)"
               color="#ffffff"
