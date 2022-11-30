@@ -136,6 +136,8 @@
   top: calc(50% - 298px / 2 - 47px + 94px); */
   z-index: 3;
   border: 1px solid blue;
+  transform: rotateZ(0deg);
+  -webkit-transform: rotateZ(0deg);
 }
 
 .sbf {
