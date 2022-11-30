@@ -72,7 +72,8 @@ const Home: NextPage = () => {
 
   function mouseUp() {
     if (czActive.current) {
-      czActive.current.style.transform = "rotate(0deg)";
+      czActive.current.style.transform =
+        "translateX(0) translateZ(0) rotateZ(0)";
     }
     if (SbfActive.current) {
       SbfActive.current.style.height = "304px";
