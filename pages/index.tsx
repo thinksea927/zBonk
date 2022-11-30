@@ -41,33 +41,11 @@ const Home: NextPage = () => {
   const [status, setStatus] = useState("done!");
   const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const [mouseDownE, setMouseDownE] = useState(false);
-  const [mouseUpE, setMouseUpE] = useState(true);
-  const [flag, setFlag] = useBoolean();
   const handleClick = () => {
     if (count < 10) {
       setCount(count + 1);
     }
   };
-  // console.log("flag", flag);
-  // const [rotate, setRotate] = useState(0);
-  const [czRotate, setCzRotate] = useState("cz");
-
-  // if (mouseDownE) {
-  //   setRotate(5.81);
-  // }
-  // if (mouseUpE) {
-  //   setRotate(3);
-  // }
-
-  // useEffect(() => {
-  //   setRotate(0);
-  // }, [mouseDownE]);
-  // useEffect(() => {
-  //   setRotate(5);
-  // }, [mouseUpE]);
-  // console.log(rotate);
 
   useEffect(() => {
     setPwd("ToBonkOrNotToBonk");
@@ -75,15 +53,11 @@ const Home: NextPage = () => {
 
   // Desktop - click func
   function mouseDown() {
-    setMouseDownE(true);
-    console.log("setMouseDownE", mouseDownE);
-    // setCzRotate("cz");
-
     musicPlayers.current?.play();
-    // if (czActive.current) {
-    //   czActive.current.style.transform =
-    //     "translateX(0) translateZ(1000px) rotateZ(5deg)";
-    // }
+    if (czActive.current) {
+      czActive.current.style.transform = "rotate(5.81deg)";
+    }
+
     if (SbfActive.current) {
       SbfActive.current.style.height = "148px";
       SbfActive.current.style.top = "642px";
@@ -98,14 +72,9 @@ const Home: NextPage = () => {
   }
 
   function mouseUp() {
-    setMouseUpE(true);
-    console.log("setMouseUpE", mouseUpE);
-    // setCzRotate("czRotate");
-    // if (czActive.current) {
-    //   czActive.current.style.transform =
-    //     "translateX(0) translateZ(0) rotateZ(0)";
-    // }
-
+    if (czActive.current) {
+      czActive.current.style.transform = "rotate(0deg)";
+    }
     if (SbfActive.current) {
       SbfActive.current.style.height = "304px";
       SbfActive.current.style.top = "482px";
@@ -216,29 +185,12 @@ const Home: NextPage = () => {
           </Box>
 
           {/* images */}
-          {/* <Box className={styles["czBox"]} transform="perspective(1000px)"> */}
-          <Box className={styles["czBox"]} transform="perspective(1000px)">
+          <Box className={styles["czBox"]}>
             <Image
               src={Cz.src}
               alt="CZ"
-              // className={classNames(
-              //   { [styles["cz"]]: mouseUpE },
-              //   {
-              //     [styles["czRotate"]]: mouseDownE,
-              //   }
-              // )}
-              // className={styles[`${czRotate}`]}
               className={styles["cz"]}
               ref={czActive}
-              // transition="all 1s ease-in-out"
-              // transitionDelay="0.05s"
-              // transform="rotateZ(0.001deg)"
-              // transform={`rotateZ(${rotate}deg)`}
-              // transform={
-              //   ({ "rotateZ(5.81deg)": true }, { "rotateZ(5.81deg)": false })
-              // }
-
-              // "rotateZ(0deg)"}
             />
           </Box>
           <Image
