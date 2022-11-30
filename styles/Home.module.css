@@ -204,4 +204,5 @@
   z-index: 3;
   border: 1px solid blue;
   transform: rotateZ(5deg);
+  -webkit-transform: rotateZ(5deg);
 }

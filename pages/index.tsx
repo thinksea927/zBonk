@@ -77,7 +77,7 @@ const Home: NextPage = () => {
   function mouseDown() {
     setMouseDownE(true);
     console.log("setMouseDownE", mouseDownE);
-    setCzRotate("czRotate");
+    setCzRotate("cz");
 
     musicPlayers.current?.play();
     // if (czActive.current) {
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
   function mouseUp() {
     setMouseUpE(true);
     console.log("setMouseUpE", mouseUpE);
-    setCzRotate("cz");
+    setCzRotate("czRotate");
     // if (czActive.current) {
     //   czActive.current.style.transform =
     //     "translateX(0) translateZ(0) rotateZ(0)";
