@@ -196,7 +196,7 @@ const Home: NextPage = () => {
               ref={czActive}
               // transition="all 1s ease-in-out"
               transitionDelay="0.05s"
-              transform="rotateY(0.001deg)"
+              transform="rotateZ(0.001deg)"
             />
           </Box>
           <Image
