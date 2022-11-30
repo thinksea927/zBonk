@@ -77,7 +77,7 @@ const Home: NextPage = () => {
   function mouseDown() {
     setMouseDownE(true);
     console.log("setMouseDownE", mouseDownE);
-    setCzRotate("cz");
+    // setCzRotate("cz");
 
     musicPlayers.current?.play();
     // if (czActive.current) {
@@ -100,7 +100,7 @@ const Home: NextPage = () => {
   function mouseUp() {
     setMouseUpE(true);
     console.log("setMouseUpE", mouseUpE);
-    setCzRotate("czRotate");
+    // setCzRotate("czRotate");
     // if (czActive.current) {
     //   czActive.current.style.transform =
     //     "translateX(0) translateZ(0) rotateZ(0)";
@@ -121,8 +121,8 @@ const Home: NextPage = () => {
 
   // mobile - click on screen
   if (typeof window !== "undefined" && isMobile) {
-    document.body.addEventListener("mousedown", mouseDown, true);
-    document.body.addEventListener("mouseup", mouseUp, true);
+    document.body.addEventListener("touchstart", mouseDown, true);
+    document.body.addEventListener("touchend", mouseUp, true);
   }
 
   return (
@@ -227,7 +227,8 @@ const Home: NextPage = () => {
               //     [styles["czRotate"]]: mouseDownE,
               //   }
               // )}
-              className={styles[`${czRotate}`]}
+              // className={styles[`${czRotate}`]}
+              className={styles["cz"]}
               ref={czActive}
               // transition="all 1s ease-in-out"
               // transitionDelay="0.05s"
