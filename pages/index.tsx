@@ -19,6 +19,7 @@ import {
   useMediaQuery,
   Image,
   Link,
+  useBoolean,
 } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
@@ -40,10 +41,17 @@ const Home: NextPage = () => {
   const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const [mouseDownE, setMouseDownE] = useState(false);
+  const [mouseUpE, setMouseUpE] = useState(false);
+  const [flag, setFlag] = useBoolean();
   const handleClick = () => {
     if (count < 10) {
       setCount(count + 1);
     }
+    setTimeout(() => {
+      setMouseUpE(true);
+      console.log(mouseUpE);
+    }, 10000);
   };
 
   useEffect(() => {
@@ -51,7 +59,6 @@ const Home: NextPage = () => {
   }, [status === "freeminting..."]);
 
   // Desktop - click func
-  const [mouseDownE, setMouseDownE] = useState(false);
   function mouseDown() {
     setMouseDownE(true);
     musicPlayers.current?.play();
@@ -196,9 +203,9 @@ const Home: NextPage = () => {
               className={styles["cz"]}
               ref={czActive}
               // transition="all 1s ease-in-out"
-              transitionDelay="0.05s"
+              // transitionDelay="0.05s"
               // transform="rotateZ(0.001deg)"
-              transform={mouseDownE ? "rotateZ(50deg)" : "rotateZ(5deg)"}
+              transform={flag ? "rotateZ(5.81deg)" : "rotateZ(0deg)"}
             />
           </Box>
           <Image
@@ -219,8 +226,10 @@ const Home: NextPage = () => {
                 fontSize="30px"
                 color="#07839E"
                 borderRadius="38.5px"
-                onMouseDown={mouseDown}
-                onMouseUp={mouseUp}
+                // onMouseDown={mouseDown}
+                // onMouseUp={mouseUp}
+                onMouseDown={setFlag.on}
+                onMouseUp={setFlag.off}
                 className={styles["bonkButton"]}
                 ref={BonkRef}
                 zIndex="10"
