@@ -132,8 +132,8 @@
   position: absolute;
   width: 299px;
   height: 298px;
-  left: calc(50% - 299px / 2 - 169.5px);
-  top: calc(50% - 298px / 2 - 47px + 94px);
+  /* left: calc(50% - 299px / 2 - 169.5px);
+  top: calc(50% - 298px / 2 - 47px + 94px); */
   z-index: 3;
 }
 
@@ -185,13 +185,13 @@
 .czBox {
   perspective: 1000;
   -webkit-perspective: 1000;
-  /* border: 1px solid red;
+  border: 1px solid red;
   position: absolute;
   width: 299px;
   height: 298px;
   left: calc(50% - 299px / 2 - 169.5px);
   top: calc(50% - 298px / 2 - 47px + 94px);
-  z-index: 3; */
+  z-index: 3;
 }
 .cz {
   border: 1px solid blue;

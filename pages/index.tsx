@@ -54,7 +54,7 @@ const Home: NextPage = () => {
   function mouseDown() {
     musicPlayers.current?.play();
     if (czActive.current) {
-      czActive.current.style.transform = "rotate(5.81deg)";
+      czActive.current.style.transform = "rotateZ(5.81deg)";
     }
     if (SbfActive.current) {
       SbfActive.current.style.height = "148px";
