@@ -183,8 +183,8 @@
 }
 
 .czBox {
-  transform: perspective(1000px);
-  -webkit-transform: perspective(1000px);
+  /* transform: perspective(1000px); */
+  /* -webkit-transform: perspective(1000px); */
   border: 1px solid red;
   position: absolute;
   width: 299px;
