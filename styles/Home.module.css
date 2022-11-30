@@ -184,6 +184,7 @@
 
 .czBox {
   perspective: 1000;
+  -webkit-perspective: 1000;
   /* border: 1px solid red;
   position: absolute;
   width: 299px;
