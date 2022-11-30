@@ -55,7 +55,7 @@ const Home: NextPage = () => {
     musicPlayers.current?.play();
     if (czActive.current) {
       czActive.current.style.transform =
-        "translateX(0) translateZ(0) rotateX(100deg)";
+        "translateX(0) translateZ(1000px) rotateX(100deg)";
     }
     if (SbfActive.current) {
       SbfActive.current.style.height = "148px";
@@ -74,6 +74,8 @@ const Home: NextPage = () => {
     if (czActive.current) {
       czActive.current.style.transform =
         "translateX(0) translateZ(0) rotateX(0)";
+      czActive.current.style.transition = "all 1s ease-in-out";
+      czActive.current.style.transitionDelay = "0.1s";
     }
 
     if (SbfActive.current) {
@@ -192,6 +194,9 @@ const Home: NextPage = () => {
               alt="CZ"
               className={styles["cz"]}
               ref={czActive}
+              transition="all 1s ease-in-out"
+              transitionDelay="0.1s"
+              transform="rotateY(0.001deg)"
             />
           </Box>
           <Image
