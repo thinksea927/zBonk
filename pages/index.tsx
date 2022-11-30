@@ -55,7 +55,7 @@ const Home: NextPage = () => {
     musicPlayers.current?.play();
     if (czActive.current) {
       czActive.current.style.transform =
-        "translateX(0) translateZ(0) rotateZ(5.81deg)";
+        "translateX(0) translateZ(0) rotateX(100deg)";
     }
     if (SbfActive.current) {
       SbfActive.current.style.height = "148px";
@@ -73,8 +73,9 @@ const Home: NextPage = () => {
   function mouseUp() {
     if (czActive.current) {
       czActive.current.style.transform =
-        "translateX(0) translateZ(0) rotateZ(0)";
+        "translateX(0) translateZ(0) rotateX(0)";
     }
+
     if (SbfActive.current) {
       SbfActive.current.style.height = "304px";
       SbfActive.current.style.top = "482px";
