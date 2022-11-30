@@ -181,3 +181,17 @@
   align-items: center;
   margin-left: 10px;
 }
+
+.czBox {
+  perspective: 1000;
+  /* border: 1px solid red;
+  position: absolute;
+  width: 299px;
+  height: 298px;
+  left: calc(50% - 299px / 2 - 169.5px);
+  top: calc(50% - 298px / 2 - 47px + 94px);
+  z-index: 3; */
+}
+.cz {
+  border: 1px solid blue;
+}

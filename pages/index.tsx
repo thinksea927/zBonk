@@ -183,12 +183,14 @@ const Home: NextPage = () => {
           </Box>
 
           {/* images */}
-          <Image
-            src={Cz.src}
-            alt="CZ"
-            className={styles["cz"]}
-            ref={czActive}
-          />
+          <Box className={styles["czBox"]}>
+            <Image
+              src={Cz.src}
+              alt="CZ"
+              className={styles["cz"]}
+              ref={czActive}
+            />
+          </Box>
           <Image
             src={Sbf.src}
             alt="SBF"
