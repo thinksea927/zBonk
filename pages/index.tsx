@@ -188,7 +188,8 @@ const Home: NextPage = () => {
           </Box>
 
           {/* images */}
-          <Box className={styles["czBox"]} transform="perspective: 1000px">
+          {/* <Box className={styles["czBox"]} transform="perspective(1000px)"> */}
+          <Box className={styles["czBox"]} transform="perspective(1000px)">
             <Image
               src={Cz.src}
               alt="CZ"
