@@ -51,14 +51,14 @@ const Home: NextPage = () => {
   }, [status === "freeminting..."]);
 
   // Desktop - click func
-  const [mouseDownE, setMouseDownE] = useState();
+  const [mouseDownE, setMouseDownE] = useState(false);
   function mouseDown() {
     setMouseDownE(true);
     musicPlayers.current?.play();
-    if (czActive.current) {
-      czActive.current.style.transform =
-        "translateX(0) translateZ(1000px) rotateZ(5deg)";
-    }
+    // if (czActive.current) {
+    //   czActive.current.style.transform =
+    //     "translateX(0) translateZ(1000px) rotateZ(5deg)";
+    // }
     if (SbfActive.current) {
       SbfActive.current.style.height = "148px";
       SbfActive.current.style.top = "642px";
@@ -73,12 +73,10 @@ const Home: NextPage = () => {
   }
 
   function mouseUp() {
-    if (czActive.current) {
-      czActive.current.style.transform =
-        "translateX(0) translateZ(0) rotateZ(0)";
-      // czActive.current.style.transition = "all 1s ease-in-out";
-      // czActive.current.style.transitionDelay = "0.05s";
-    }
+    // if (czActive.current) {
+    //   czActive.current.style.transform =
+    //     "translateX(0) translateZ(0) rotateZ(0)";
+    // }
 
     if (SbfActive.current) {
       SbfActive.current.style.height = "304px";
