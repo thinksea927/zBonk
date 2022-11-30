@@ -20,6 +20,7 @@ import {
   Image,
   Link,
   useBoolean,
+  transform,
 } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
@@ -42,7 +43,7 @@ const Home: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [mouseDownE, setMouseDownE] = useState(false);
-  const [mouseUpE, setMouseUpE] = useState(false);
+  const [mouseUpE, setMouseUpE] = useState(true);
   const [flag, setFlag] = useBoolean();
   const handleClick = () => {
     if (count < 10) {
@@ -50,23 +51,22 @@ const Home: NextPage = () => {
     }
   };
   // console.log("flag", flag);
-  const handleRotate = () => {
-    if (mouseDownE) {
-      return "rotateZ(5.81deg)";
-    }
-    if (mouseUpE) {
-      return "rotateZ(0deg)";
-    }
-  };
   const [rotate, setRotate] = useState(0);
-  useEffect(() => {
-    setRotate(5.81);
-    setTimeout(() => {
-      setRotate(0);
-    }, 100);
-  }, [mouseDownE]);
 
-  console.log(rotate);
+  // if (mouseDownE) {
+  //   setRotate(5.81);
+  // }
+  // if (mouseUpE) {
+  //   setRotate(3);
+  // }
+
+  // useEffect(() => {
+  //   setRotate(0);
+  // }, [mouseDownE]);
+  // useEffect(() => {
+  //   setRotate(5);
+  // }, [mouseUpE]);
+  // console.log(rotate);
 
   useEffect(() => {
     setPwd("ToBonkOrNotToBonk");
@@ -96,7 +96,7 @@ const Home: NextPage = () => {
   }
 
   function mouseUp() {
-    setMouseDownE(false);
+    setMouseUpE(true);
     console.log("setMouseUpE", mouseUpE);
     // if (czActive.current) {
     //   czActive.current.style.transform =
@@ -218,13 +218,20 @@ const Home: NextPage = () => {
             <Image
               src={Cz.src}
               alt="CZ"
-              className={styles["cz"]}
+              className={classNames(
+                { [styles["cz"]]: mouseUpE },
+                {
+                  [styles["czRotate"]]: mouseDownE,
+                }
+              )}
               ref={czActive}
               // transition="all 1s ease-in-out"
               // transitionDelay="0.05s"
               // transform="rotateZ(0.001deg)"
-              transform={`rotateZ(${rotate}deg)`}
-              // ({ "rotateZ(5.81deg)": true }, { "rotateZ(5.81deg)": false })
+              // transform={`rotateZ(${rotate}deg)`}
+              // transform={
+              //   ({ "rotateZ(5.81deg)": true }, { "rotateZ(5.81deg)": false })
+              // }
 
               // "rotateZ(0deg)"}
             />
